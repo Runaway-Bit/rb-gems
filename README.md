@@ -1,34 +1,38 @@
 # Rb::Hasher
 
-TODO: Write a gem description
+Takes an strings array, join the values in a single string and return the hash value of the generated string
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rb-hasher', :git => 'https://github.com/fervic/rb-gems.git'
+gem 'rb-hasher', :git => "https://#{ENV['GITHUB_USERNAME']}@github.com/fervic/rb-gems.git"
 ```
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rb-hasher
+    $ bundle install
 
 ## Usage
 
 ```ruby
-require 'rb-hasher'
+require 'rb/hasher'
 
 Class MyClass
 
   # values_arr = ['name','address','zip5']
   
   def ArrayToHash(values_arr)
-    RB::Hasher.generate(values_arr)
+    RB::Hasher.generate(*values_arr)
+  end
+
+  # value1 = 'name'
+  # value2 = 'address'
+  # value3 = 'zip5'
+
+  def ValuesToHash(value1, value2, value3)
+    RB::Hasher.generate(value1, value2, value3)
   end
 end
 ```

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RB::Hasher do
   subject (:hasher) do
-    RB::Hasher.new
+    RB::Hasher
   end
 
   describe '#generate' do
@@ -10,7 +10,7 @@ describe RB::Hasher do
     let(:output) { 4177694326 }
     
     shared_examples 'returns the right hash value' do
-      specify { expect(hasher.generate(input)).to eq output }
+      specify { expect(hasher.generate(*input)).to eq output }
     end
 
     context 'when all values are lowercase' do
@@ -37,6 +37,17 @@ describe RB::Hasher do
       it_behaves_like 'returns the right hash value'
     end
 
+    context 'when input is more than one argument' do
+      let(:arg1) { 'ee' }
+      let(:arg2) { 'rrr' }
+      let(:arg3) { 'q' }
+      let(:arg4) { '' }
+      let(:arg5) { 'ttttt' }
+      it 'returns the right value' do
+        expect(hasher.generate(arg1, arg2, arg3, arg4, arg5)).to eq output
+      end
+    end
+
     context 'when a value has a space in the middle' do
       let(:output) { 4106923319 }
 
@@ -49,6 +60,7 @@ describe RB::Hasher do
         let(:input) { ['ee','rrr','q','','tt   ttt'] }
         it_behaves_like 'returns the right hash value'
       end
+
     end # when has space in middle
 
   end

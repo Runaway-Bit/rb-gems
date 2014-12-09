@@ -1,13 +1,12 @@
 require "rb/hasher/version"
-require_relative 'core_ext/hash.rb'
+require 'murmurhash3'
 
 module RB
   class Hasher
 
-  using ToHash
-
     def generate(values)
-      values.join(' ').squeeze(' ').strip.upcase.hash
+      MurmurHash3::V32.str_hash(values.join(' ').squeeze(' ').strip.upcase)
     end
+
   end
 end

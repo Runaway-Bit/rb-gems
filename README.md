@@ -7,7 +7,7 @@ TODO: Write a gem description
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rb-hasher'
+gem 'rb-hasher', :git => 'https://github.com/fervic/rb-gems.git'
 ```
 
 And then execute:
@@ -20,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'rb-hasher'
+
+Class MyClass
+
+  # values_arr = ['name','address','zip5']
+  
+  def ArrayToHash(values_arr)
+    RB::Hasher.generate(values_arr)
+  end
+end
+```
 
 ## Contributing
 

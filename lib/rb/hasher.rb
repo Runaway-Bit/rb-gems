@@ -5,7 +5,22 @@ module RB
   class Hasher
 
     def self.generate(*values)
-      MurmurHash3::V32.str_hash(values.join(' ').squeeze(' ').strip.upcase)
+      if values.count == 1
+        first_value = values.first
+        if first_value.is_a?(Hash)
+          MurmurHash3::V32.str_hash(
+            first_value.sort.map(&:last).join(' ').squeeze(' ').strip.upcase
+          )
+        else
+          MurmurHash3::V32.str_hash(
+            first_value.join(' ').squeeze(' ').strip.upcase
+          )
+        end
+      else
+        MurmurHash3::V32.str_hash(
+            values.join(' ').squeeze(' ').strip.upcase
+          )
+      end
     end
 
   end

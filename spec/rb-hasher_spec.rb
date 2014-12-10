@@ -37,6 +37,23 @@ describe RB::Hasher do
       it_behaves_like 'returns the right hash value'
     end
 
+    context 'when input is a hash' do
+      let(:input) do 
+        { 
+          "first_name" => 'ee', 
+          "last_name" => 'rrr', 
+          "address_line1" => 'q',
+          "address_line2" => '',
+          "zip5" => 'ttttt'
+        }
+      end
+      let(:output) { 3403675481 }
+      
+       it 'returns the right value' do
+        expect(hasher.generate(input)).to eq output
+      end
+    end
+
     context 'when input is more than one argument' do
       let(:arg1) { 'ee' }
       let(:arg2) { 'rrr' }

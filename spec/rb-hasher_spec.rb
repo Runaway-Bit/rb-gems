@@ -40,16 +40,15 @@ describe RB::Hasher do
     context 'when input is a hash' do
       let(:input) do 
         { 
-          "first_name" => 'ee', 
-          "last_name" => 'rrr', 
-          "address_line1" => 'q',
-          "address_line2" => '',
+          "first_name" => 'q', 
+          "last_name" => '', 
+          "address_line1" => 'ee',
+          "address_line2" => 'rrr',
           "zip5" => 'ttttt'
         }
       end
-      let(:output) { 14699789621637965111 }
       
-       it 'returns the right value' do
+       it 'sorts by key, hashes and returns the right value' do
         expect(hasher.generate(input)).to eq output
       end
     end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'spec_helper'
 
 describe RB::Hasher do
   subject (:hasher) do
@@ -7,7 +7,7 @@ describe RB::Hasher do
 
   describe '#generate' do
     let(:input) { ['ee','rrr','q','','ttttt'] }
-    let(:output) { 4177694326 }
+    let(:output) { 11904638257096570346 }
     
     shared_examples 'returns the right hash value' do
       specify { expect(hasher.generate(*input)).to eq output }
@@ -40,16 +40,15 @@ describe RB::Hasher do
     context 'when input is a hash' do
       let(:input) do 
         { 
-          "first_name" => 'ee', 
-          "last_name" => 'rrr', 
-          "address_line1" => 'q',
-          "address_line2" => '',
+          "first_name" => 'q', 
+          "last_name" => '', 
+          "address_line1" => 'ee',
+          "address_line2" => 'rrr',
           "zip5" => 'ttttt'
         }
       end
-      let(:output) { 3403675481 }
       
-       it 'returns the right value' do
+       it 'sorts by key, hashes and returns the right value' do
         expect(hasher.generate(input)).to eq output
       end
     end
@@ -66,7 +65,7 @@ describe RB::Hasher do
     end
 
     context 'when a value has a space in the middle' do
-      let(:output) { 4106923319 }
+      let(:output) { 18397349174490709545 }
 
       context 'when values have single space in the middle' do
         let(:input) { ['ee','rrr','q','','tt ttt'] }

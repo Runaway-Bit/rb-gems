@@ -8,19 +8,21 @@ module RB
       if values.count == 1
         first_value = values.first
         if first_value.is_a?(Hash)
-          MurmurHash3::V32.str_hash(
+          hash_array = MurmurHash3::V128.str_hash(
             first_value.sort.map(&:last).join(' ').squeeze(' ').strip.upcase
           )
         else
-          MurmurHash3::V32.str_hash(
+          hash_array = MurmurHash3::V128.str_hash(
             first_value.join(' ').squeeze(' ').strip.upcase
           )
         end
       else
-        MurmurHash3::V32.str_hash(
-            values.join(' ').squeeze(' ').strip.upcase
-          )
+        hash_array = MurmurHash3::V128.str_hash(
+          values.join(' ').squeeze(' ').strip.upcase
+        )
       end
+      (hash_array[1] << 32) | hash_array[0]
+      # This is an optimized version of: hash_array.pack('L*').unpack('Q').first
     end
 
   end

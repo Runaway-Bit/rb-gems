@@ -21,8 +21,8 @@ module RB
           values.join(' ').squeeze(' ').strip.upcase
         )
       end
-      (hash_array[1] << 32) | hash_array[0]
-      # This is an optimized version of: hash_array.pack('L*').unpack('Q').first
+      (hash_array[1] << 30) | (hash_array[0] >> 2)
+      # Efficient version of: hash_array.pack('L*').unpack('Q').first >> 2
     end
 
   end

@@ -1,4 +1,4 @@
-require_relative 'spec_helper'
+require_relative '../lib/rb/hasher.rb'
 
 describe RB::Hasher do
   subject (:hasher) do

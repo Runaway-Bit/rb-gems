@@ -7,7 +7,7 @@ describe RB::Hasher do
 
   describe '#generate' do
     let(:input) { ['ee','rrr','q','','ttttt'] }
-    let(:output) { 11904638257096570346 }
+    let(:output) { 2976159564274142586 }
     
     shared_examples 'returns the right hash value' do
       specify { expect(hasher.generate(*input)).to eq output }
@@ -65,7 +65,7 @@ describe RB::Hasher do
     end
 
     context 'when a value has a space in the middle' do
-      let(:output) { 18397349174490709545 }
+      let(:output) { 4599337293622677386 }
 
       context 'when values have single space in the middle' do
         let(:input) { ['ee','rrr','q','','tt ttt'] }
